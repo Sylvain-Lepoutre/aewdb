@@ -1,0 +1,9 @@
+<article>
+    <h3>AEW World Champion</h3>
+    <% for (const wrestler of wrestlers) { if (wrestler.championship==="AEW World Champion" ) { %>
+        <h3>
+            <%= wrestler.name %>
+        </h3>
+        <p><a href="/roster/<%= wrestler.slug %>">Voir la fiche complète</a></p>
+        <% } } %>
+</article>
