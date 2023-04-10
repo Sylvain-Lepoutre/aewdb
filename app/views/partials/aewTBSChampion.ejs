@@ -1,9 +1,12 @@
-<article>
-    <h3>AEW TBS Champion</h3>
-    <% for (const wrestler of wrestlers) { if (wrestler.championship==="AEW TBS Champion" ) { %>
-        <h3>
-            <%= wrestler.name %>
-        </h3>
-        <p><a href="/roster/<%= wrestler.slug %>">Voir la fiche complète</a></p>
-        <% } } %>
+<article class="block grid6">
+    <h3 class="block__title">AEW TBS Champion</h3>
+    <div class="card">
+        <% for (const wrestler of wrestlers) { if (wrestler.championship==="AEW TBS" ) { %>
+            <h3 class="card__title">
+                <%= wrestler.name %>
+            </h3>
+            <p class="card__link"><a href="/roster/<%= wrestler.slug %>">Voir la fiche complète</a></p>
+            <% } } %>
+    </div>
+
 </article>

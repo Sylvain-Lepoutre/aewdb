@@ -19,7 +19,7 @@ export default [
                 loss:0,
             },
         },
-        championship: "AEW World Champion",
+        championship: "AEW World",
     },
     {
         name: 'Jamie Hayter',
@@ -38,7 +38,7 @@ export default [
                 loss:0,
             },
         },
-        championship: "AEW Women's World Champion",
+        championship: "AEW Women's World",
     },
     {
         name: 'Austin Gunn',
@@ -57,7 +57,7 @@ export default [
                 loss:0,
             },
         },
-        championship: "AEW World Tag Team Champion",
+        championship: "AEW World Tag Team",
     },
     {
         name: 'Colten Gunn',
@@ -76,7 +76,7 @@ export default [
                 loss:0,
             },
         },
-        championship: "AEW World Tag Team Champion",
+        championship: "AEW World Tag Team",
     },
     {
         name: 'Malakai Black',
@@ -95,7 +95,7 @@ export default [
                 loss:0,
             },
         },
-        championship: "AEW World Trios Champion",
+        championship: "AEW World Trios",
     },
     {
         name: 'Brody King',
@@ -114,7 +114,7 @@ export default [
                 loss:0,
             },
         },
-        championship: "AEW World Trios Champion",
+        championship: "AEW World Trios",
     },
     {
         name: 'Buddy Matthews',
@@ -133,7 +133,7 @@ export default [
                 loss:0,
             },
         },
-        championship: "AEW World Trios Champion",
+        championship: "AEW World Trios",
     },
     {
         name: 'Orange Cassidy',
@@ -152,7 +152,7 @@ export default [
                 loss:0,
             },
         },
-        championship: "AEW International Champion",
+        championship: "AEW International",
     },
     {
         name: 'Jade Cargill',
@@ -171,7 +171,7 @@ export default [
                 loss:0,
             },
         },
-        championship: "AEW TBS Champion",
+        championship: "AEW TBS",
     },
     {
         name: 'Powerhouse Hobbs',
@@ -190,7 +190,7 @@ export default [
                 loss:0,
             },
         },
-        championship: "AEW TNT Champion",
+        championship: "AEW TNT",
     },
     {
         name: 'Chris Jericho',

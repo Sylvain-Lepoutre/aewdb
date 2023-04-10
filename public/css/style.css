@@ -1,3 +1,126 @@
+img {
+    max-width: 100%;
+}
+
+.page {
+    background-color: black;
+}
+
+
+.header {
+    font-size: 3em;
+    margin: auto;
+    color: gold;
+    text-align: center;
+    
+}
+
+.nav__list {
+    display: flex;
+    font-size: 0.5em;
+    justify-content: space-evenly;
+    margin-top: 1rem;
+}
+
+.nav__item {
+    text-decoration: none;
+}
+
+main {
+    background-color: darkgray;
+}
+
+.content {
+    margin: 2rem auto;
+    padding-top: 2rem;
+    width: 90%;
+}
+
+.content__title {
+    font-size: 2em;
+    text-align: center;
+}
+
+.block__container {
+    margin: 1rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr) auto;
+    gap: 2em;
+}
+
+.block {
+    border: solid 1px gold;
+    font-size: 1.5em;
+}
+
+.block__title {
+    text-align: center;
+    padding: 0.5em 0;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+}
+
+.card__title {
+    padding: 0.5em 0;
+    text-align: center;
+}
+
+.card__link {
+    padding-bottom: 0.5em;
+    text-align: center;
+}
+
+.card__img {
+    height: 300px;
+}
+
+.card--team {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around
+}
+
+.grid1 {
+    grid-row: 1;
+    grid-column: 1;
+}
+
+.grid2 {
+    grid-row: 1;
+    grid-column: 2;
+}
+
+.grid3 {
+    grid-row: 1;
+    grid-column: 3/5;
+
+}
+
+.grid4 {
+    grid-row: 2;
+    grid-column: 1/4;
+}
+
+.grid5 {
+    grid-row: 2;
+    grid-column: 4;
+}
+
+.grid6 {
+    grid-row: 3;
+    grid-column: 1;
+}
+
+.grid7 {
+    grid-row: 3;
+    grid-column: 2;
+}
+
 .card__container {
     display: flex;
+    background-color: darkgray;
 }

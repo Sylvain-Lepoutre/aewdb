@@ -1,9 +1,13 @@
-<article>
-    <h3>AEW World Trios Champions</h3>
-    <% for (const wrestler of wrestlers) { if (wrestler.championship==="AEW World Trios Champion" ) { %>
-        <h3>
-            <%= wrestler.name %>
-        </h3>
-        <p><a href="/roster/<%= wrestler.slug %>">Voir la fiche complète</a></p>
-        <% } } %>
+<article class="block grid4">
+    <h3 class="block__title">AEW World Trios Champions</h3>
+    <div class="card card--team">
+        <% for (const wrestler of wrestlers) { if (wrestler.championship==="AEW World Trios" ) { %>
+            <div class="">
+                <h3 class="card__title">
+                    <%= wrestler.name %>
+                </h3>
+                <p><a href="/roster/<%= wrestler.slug %>">Voir la fiche complète</a></p>                
+            </div>
+            <% } } %>
+    </div>
 </article>

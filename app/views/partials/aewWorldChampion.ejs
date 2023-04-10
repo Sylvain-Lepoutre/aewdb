@@ -1,9 +1,12 @@
-<article>
-    <h3>AEW World Champion</h3>
-    <% for (const wrestler of wrestlers) { if (wrestler.championship==="AEW World Champion" ) { %>
-        <h3>
+<article class="block grid1">
+    <h3 class="block__title">AEW World Champion</h3>
+    <div class="card">
+            <% for (const wrestler of wrestlers) { if (wrestler.championship==="AEW World" ) { %>
+        <h3 class="card__title">
             <%= wrestler.name %>
         </h3>
-        <p><a href="/roster/<%= wrestler.slug %>">Voir la fiche complète</a></p>
+        <p class="card__link"><a href="/roster/<%= wrestler.slug %>">Voir la fiche complète</a></p>
+        <img class="card__img" src="/img/ph.png" alt="">
         <% } } %>
+    </div>
 </article>

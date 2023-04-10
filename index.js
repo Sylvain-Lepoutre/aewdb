@@ -2,7 +2,7 @@ import express from 'express';
 import * as dotenv from 'dotenv';
 import router from './app/router.js'
 
-import wrestlers from './app/roster.js';
+import wrestlers from './app/data/wrestlers.js';
 
 
 dotenv.config();
@@ -15,11 +15,6 @@ app.set('view engine', 'ejs');
 app.set('views', './app/views');
 
 app.use(express.static('./public'));
-
-app.use((req, res, next) => {
-    res.locals.wrestlers = wrestlers;
-    next();
-});
 
 //TODO Gestion 404
 
