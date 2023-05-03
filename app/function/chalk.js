@@ -2,7 +2,21 @@ import chalk from "chalk";
 
 const log = console.log;
 
-const error = chalk.bold.bgRed;
-const test = chalk.bold.bgGreen;
+const Log = {
+    error: function (message) {
+        log(chalk.bold.bgRed(message));
+    },
 
-export { log, error, test };
+    ok: function (message) {
+        log(chalk.bold.bgGreen(message));
+    },
+
+    wrestler: function (message) {
+        log(chalk.bold.bgBlue(message));
+    },
+    championship: function (message) {
+        log(chalk.bold.bgYellowBright(message));
+    },
+};
+
+export default Log;

@@ -1,18 +1,43 @@
-import wrestlers from "../data/wrestlers.js";
-import championships from "../data/championship.js";
-import { log, error, test } from "../function/chalk.js";
+import Log from "../function/chalk.js";
+
+import sequelize from '../databse.js';
+import Championship from "../models/Championship.js";
+import Wrestler from "../models/Wrestler.js";
+import Wrestler_has_Championship from "../models/Wrestler_has_Championship.js";
+
 
 const mainController = {
-    home: function(req, res) {
-        // console.log(wrestlers);
-        // Je veux filtrer les wrestlers pour garder ceux qui ont un titre de champion
-        const homeWrestlers = wrestlers.filter(wrestler => wrestler.championship.length > 0);
+    home: async function (req, res) {
+        try {
+            const allChampionships = await Championship.findAll( {
+                include: [{
+                    model: Wrestler,
+                    through: {
+                        model: Wrestler_has_Championship
+                    }
+                }]
+            });
+            // const allWrestlers = await Wrestler.findAll({
+            //     include: [{
+            //         model: Championship,
+            //         through: {
+            //             model: Wrestler_has_Championship
+            //         }
+            //     }]
+            // });
+            // // Filtrer les champions avec au moins un championship
+            // const wrestlersWithChampionships = allWrestlers.filter(wrestler => wrestler.Championships.length > 0);
+            Log.wrestler('Données OK')
+            res.render('home', {
+                // wrestlers: wrestlersWithChampionships,
+                championships: allChampionships,
+            })
+        } catch (error) {
+            Log.error('Erreur affichage');
+            console.log(error);
+        };
+    },
+};
 
-        // res.send('ok');
-        res.render('home', { 
-            wrestlers: homeWrestlers,
-        });
-    }
-}
 
 export default mainController;

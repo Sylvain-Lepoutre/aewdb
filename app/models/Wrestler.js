@@ -2,17 +2,17 @@ import { DataTypes, Model } from 'sequelize';
 import sequelize from '../databse.js';
 import slugify from 'slugify';
 
-class Championship extends Model {}
+class Wrestler extends Model { }
 
-Championship.init({
+Wrestler.init({
     id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
         autoIncrement: true
     },
-    title: {
-        type: DataTypes.STRING,
+    name: {
+        type: DataTypes.TEXT,
         allowNull: false,
         validate: {
             notEmpty: true,
@@ -21,28 +21,19 @@ Championship.init({
     slug: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true,
         validate: {
             notEmpty: true
         }
-    },
-    maxHolder: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        validate: {
-            notEmpty: true,
-            min: 1
-        }
-    },
+    }
 }, {
     sequelize,
-    modelName: 'Championship',
-    tableName: 'championship',
+    modelName: 'Wrestler',
+    tableName: 'wrestler',
     hooks: {
-        beforeValidate: (championship) => {
-            championship.slug = slugify(championship.title, { lower: true, remove: /['"]/g });
+        beforeValidate: (wrestler) => {
+            wrestler.slug = slugify(wrestler.name, { lower: true, remove: /['"]/g });
         }
     }
 });
 
-export default Championship;
+export default Wrestler;

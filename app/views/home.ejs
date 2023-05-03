@@ -25,18 +25,50 @@
             <section class="content">
                 <h2 class="content__title">All Elite Wrestling Champions</h2>
                 <div class="block__container">
-                    <%- include('./partials/aewWorldChampion') %>
-                        <%- include('./partials/aewWomensWorldChampion') %>
-                            <%- include('./partials/aewWorldTagTeamChampions') %>
-                                <%- include('./partials/aewWorldTriosChampions') %>
-                                    <%- include('./partials/aewInternationalChampion') %>
-                                        <%- include('./partials/aewTBSChampion') %>
-                                            <%- include('./partials/aewTNTChampion') %>
-                </div>
+                    <% for (const championship of championships) { %>
+                            <% if (championship.Wrestlers.length===3) { %>
+                                <div class="block">
+                                    <h3 class="block__title">
+                                        <%= championship.title %>
+                                    </h3>
+                                <div class="card__container">
+                                    <% for (const championshipWrestler of championship.Wrestlers) { %>
+                                        <div class="card">
+                                            <h3 class="card__title">
+                                                <%= championshipWrestler.name %>
+                                            </h3>
+                                            <img src="img/ph.png" alt="" srcset="">
+                                        </div>
+                                        <% } %>
+                                </div>
+                                </div>
+                                <% } else if (championship.Wrestlers.length===2) { %>
+                                    <div class="card__container">
+                                        <% for (const championshipWrestler of championship.Wrestlers) { %>
+                                            <div class="card">
+                                                <h3 class="card__title">
+                                                    <%= championshipWrestler.name %>
+                                                </h3>
+                                                <img src="img/ph.png" alt="" srcset="">
+                                            </div>
+                                            <% } %>
+                                    </div>
+                                    <% } else { %>
+                                        <div class="card__container">
+                                            <div class="card">
+                                                <h3 class="card__title">
+                                                    <%= championship.Wrestlers[0].name %>
+                                                </h3>
+                                                <img src="img/ph.png" alt="" srcset="">
+                                            </div>
+                                        </div>
+                                        <% } %>
+                        </div>
+                        <% } %>
+           
             </section>
         </main>
     </div>
-
 </body>
 
 </html>

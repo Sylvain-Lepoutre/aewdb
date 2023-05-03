@@ -22,7 +22,9 @@
             </nav>
         </header>
         <main>
-
+            <% for (const wrestler of wrestlers) { %>
+                <p><%= wrestler.name %></p>
+            <% } %>
         </main>
     </div>
 
