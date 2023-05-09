@@ -1,0 +1,17 @@
+<%- include('partials/_head') %>
+
+<%- include('partials/_header') %>
+<main>
+    <h2><%= wrestler.name %></h2>
+    <% if (wrestler.Championships.length > 0) { %>
+        <h3>Championnats:</h3>
+        <ul>
+            <% for (const championship of wrestler.Championships) { %>
+                <li><%= championship.title %></li>
+            <% } %>
+        </ul>
+    <% } %>
+</main>
+
+
+<%- include('partials/_footer') %>

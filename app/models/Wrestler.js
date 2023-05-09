@@ -14,6 +14,11 @@ Wrestler.init({
     name: {
         type: DataTypes.TEXT,
         allowNull: false,
+        unique: true,
+        set(value) {
+            this.setDataValue('slug', slugify(value, { lower: true, remove: /['"]/g }))
+            this.setDataValue('name', value)
+        },
         validate: {
             notEmpty: true,
         }
@@ -21,6 +26,7 @@ Wrestler.init({
     slug: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
         validate: {
             notEmpty: true
         }
@@ -32,7 +38,10 @@ Wrestler.init({
     hooks: {
         beforeValidate: (wrestler) => {
             wrestler.slug = slugify(wrestler.name, { lower: true, remove: /['"]/g });
-        }
+        },
+    //     beforeUpdate: (wrestler) => {
+    //         wrestler.slug = slugify(wrestler.name, { lower: true, remove: /['"]/g });
+    //     }
     }
 });
 

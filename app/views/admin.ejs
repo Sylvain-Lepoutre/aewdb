@@ -1,0 +1,28 @@
+<%- include('partials/_head') %>
+
+  <%- include('partials/_header') %>
+    <main>
+      <form method="POST" action="/admin/wrestler/create">
+        <div>
+          <label for="name">Nom du catcheur :</label>
+          <input type="text" name="name" id="name" required>
+        </div>
+        <div>
+          <button type="submit">Créer le catcheur</button>
+        </div>
+      </form>
+      <form action="/admin/wrestler/update" method="POST">
+        <label for="wrestler">Sélectionnez un catcheur :</label>
+        <select name="wrestler" id="wrestler">
+          <% wrestlers.forEach((wrestler) => { %>
+            <option value="<%= wrestler.id %>"><%= wrestler.name %></option>
+          <% }); %>
+        </select>
+        <button type="submit">Modifier</button>
+      </form>
+    </main>
+    </div>
+
+    </body>
+
+    <%- include('partials/_footer') %>

@@ -17,19 +17,8 @@ const mainController = {
                     }
                 }]
             });
-            // const allWrestlers = await Wrestler.findAll({
-            //     include: [{
-            //         model: Championship,
-            //         through: {
-            //             model: Wrestler_has_Championship
-            //         }
-            //     }]
-            // });
-            // // Filtrer les champions avec au moins un championship
-            // const wrestlersWithChampionships = allWrestlers.filter(wrestler => wrestler.Championships.length > 0);
-            Log.wrestler('Données OK')
+            Log.wrestler('Données OK');
             res.render('home', {
-                // wrestlers: wrestlersWithChampionships,
                 championships: allChampionships,
             })
         } catch (error) {
@@ -37,6 +26,15 @@ const mainController = {
             console.log(error);
         };
     },
+
+
+
+
+    notFound: function(req, res) {
+        res.status(404).render('error', {
+            message: `La page demandé n'a pas été trouvé`
+        })
+    }
 };
 
 

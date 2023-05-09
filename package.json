@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "node index",
-    "dev": "node-dev index --notify=false --clear"
+    "dev": "node-dev index --notify=false --clear",
+    "init-db": "node init-db.js "
   },
   "repository": {
     "type": "git",

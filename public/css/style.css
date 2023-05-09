@@ -6,6 +6,10 @@ img {
     background-color: black;
 }
 
+a {
+    text-decoration: none;
+    color: gold;
+}
 
 .header {
     font-size: 3em;
@@ -59,9 +63,17 @@ main {
     padding: 0.5em 0;
 }
 
+.card__container {
+    display: flex;
+    background-color: darkgray;
+    justify-content: space-around;
+}
+
 .card {
     display: flex;
     flex-direction: column;
+    margin: 1rem;
+    text-align: center;
 }
 
 .card__title {
@@ -120,7 +132,3 @@ main {
     grid-column: 2;
 }
 
-.card__container {
-    display: flex;
-    background-color: darkgray;
-}

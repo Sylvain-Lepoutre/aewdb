@@ -1,33 +1,27 @@
-<!DOCTYPE html>
-<html lang="fr">
+<%- include('partials/_head') %>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/reset.css">
-    <link rel="stylesheet" href="/css/style.css">
-    <title>Accueil - All Elite Wrestling</title>
-</head>
-
-<body>
-    <div class="page">
-        <header class="header">
-            <h1 class="header__title">All Elite Wrestling</h1>
-            <nav class="header__nav">
-                <ul class="nav__list">
-                    <li class="nav__item"><a href="/roster">Roster complet</a></li>
-                    <li class="nav__item"><a href="/shows">Liste des shows</a></li>
-                </ul>
-            </nav>
-        </header>
+    <%- include('partials/_header') %>
         <main>
-            <% for (const wrestler of wrestlers) { %>
-                <p><%= wrestler.name %></p>
-            <% } %>
+            <section class="content">
+                <h2 class="content__title">ALL Elite Wrestling Roster</h2>
+                <div class="card__container">
+                    <% for (const wrestler of wrestlers) { %>
+                        <div class="card">
+                            <h3 class="card__title">
+                                <%= wrestler.name %>
+                            </h3>
+                            <% if (wrestler.Championships.length > 0) { %>
+                                <ul>
+                                    <% for (const championship of wrestler.Championships) { %>
+                                        <li><%= championship.title %></li>
+                                    <% } %>
+                                </ul>
+                            <% } %>
+                        </div>
+                        <% } %>
+                </div>
+            </section>
+
         </main>
-    </div>
 
-</body>
-
-</html>
+        <%- include('partials/_footer') %>

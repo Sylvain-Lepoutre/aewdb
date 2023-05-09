@@ -1,0 +1,28 @@
+
+                        <% let gridClass = ""; %>
+                        <% switch (championship.slug) {
+                            case 'aew-world-championship':
+                                gridClass = 'grid1'
+                                break;
+                            case 'aew-womens-world-championship':
+                                gridClass = 'grid2';
+                                break;
+                            case 'aew-tag-team-championship':
+                                gridClass = 'grid3';
+                                break;
+                            case 'aew-trios-championship':
+                                gridClass = 'grid4';
+                                break;
+                            case 'aew-international-championship':
+                                gridClass = 'grid5';
+                                break;
+                            case 'aew-tbs-championship':
+                                gridClass = 'grid6';
+                                break;
+                            case 'aew-tnt-championship':
+                                gridClass = 'grid7';
+                                break;
+                            default:
+                                break;
+                        } %>
+
