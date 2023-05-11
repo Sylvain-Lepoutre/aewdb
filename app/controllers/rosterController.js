@@ -4,7 +4,7 @@ import sequelize from '../databse.js';
 import Championship from "../models/Championship.js";
 import Wrestler from "../models/Wrestler.js";
 import Wrestler_has_Championship from "../models/Wrestler_has_Championship.js";
-import { findOnebySlug } from "../utils/findOneBySlug.js";
+import { findOneWrestlerBySlug } from "../utils/requestWrestlers.js";
 
 
 

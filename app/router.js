@@ -19,6 +19,7 @@ router.get('/admin', adminController.admin);
 router.post('/admin/wrestler/create', adminController.wrestlerCreate);
 router.post('/admin/wrestler/update', adminController.wrestlerUpdate);
 router.post('/admin/wrestler/edit', adminController.wrestlerEdit);
+router.post('/admin/wrestler/delete', adminController.wrestlerDelete);
 
 
 // Partie API
@@ -28,6 +29,7 @@ router.post('/api/roster', apiController.wrestlerCreate)
 router.delete('/api/roster/:slug', apiController.wrestlerDelete)
 router.patch('/api/roster/:slug', apiController.wrestlerUpdate)
 
+router.get('/api/championships', apiController.championships)
 
 
 router.use(mainController.notFound);

@@ -91,6 +91,30 @@ const adminController = {
                 message: 'Le serveur a rencontré un problème'
             });
         }
+    },
+
+    wrestlerDelete: async function (req, res) {
+        try {
+            const wrestlerId = req.body.id;
+            const deletedWrestler = await Wrestler.destroy({
+                where: {
+                    id: wrestlerId,
+                }
+            });
+            if (deletedWrestler > 0) {
+                res.send('Le catcheur a été supprimé');
+            } else {
+                return res.render('error', {
+                    message: "Le catcheur n'a pas été trouvé"
+                });
+            }
+        } catch (error) {
+            console.error(error);
+            Log.error(error.message);
+            res.render('error', {
+                message: 'Le serveur a rencontré un problème'
+            });
+        }
     }
 };
 

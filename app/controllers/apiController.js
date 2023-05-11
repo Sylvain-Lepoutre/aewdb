@@ -5,25 +5,17 @@ import Championship from "../models/Championship.js";
 import Wrestler from "../models/Wrestler.js";
 import Wrestler_has_Championship from "../models/Wrestler_has_Championship.js";
 
-import { findOnebySlug } from "../utils/findOneBySlug.js";
+import { findAllWrestlers, findOneWrestlerBySlug, findOneWrestlerByName } from "../utils/requestWrestlers.js";
 
 const apiController = {
     roster: async function (req, res) {
         try {
-            const allWrestlers = await Wrestler.findAll({
-                include: [{
-                    model: Championship,
-                    through: {
-                        model: Wrestler_has_Championship
-                    }
-                }],
-                order: [['name', 'ASC']]
-            });
-            Log.wrestler('Roster envoyé')
+            const allWrestlers = await findAllWrestlers();
+            // Log.wrestler('Roster envoyé')
             res.json(allWrestlers)
         } catch (error) {
-            console.error(error);
-            Log.error(error.message);
+            // console.error(error);
+            // Log.error(error.message);
             res.status(500).json({
                 message: 'Le serveur a rencontré un problème.'
             });
@@ -33,28 +25,20 @@ const apiController = {
     wrestlerRead: async function (req, res) {
         try {
             const { slug } = req.params;
-            const foundWrestler = await Wrestler.findOne({
-                include: [{
-                    model: Championship,
-                    through: {
-                        model: Wrestler_has_Championship
-                    }
-                }],
-                where: { slug: slug }
-            });
+            const foundWrestler = await findOneWrestlerBySlug(slug);
             if (foundWrestler) {
-                Log.wrestler('Wrestler envoyé')
+                // Log.wrestler('Wrestler envoyé')
                 res.json(foundWrestler)
             }
             else {
-                Log.error('Wrestler not found');
+                // Log.error('Wrestler not found');
                 res.status(404).json({
                     message: `Le catcheur demandé n'existe pas`
                 })
             }
         } catch (error) {
-            console.error(error);
-            Log.error(error.message)
+            // console.error(error);
+            // Log.error(error.message)
             res.status(500).json({
                 message: 'Le serveur a rencontré un problème.',
             })
@@ -63,25 +47,23 @@ const apiController = {
 
     wrestlerCreate: async function (req, res) {
         try {
-            const wrestler = await Wrestler.findOne({
-                where: {
-                    name: req.body.name
-                }
-            });
-            if (wrestler) {
+            const { name } = req.body;
+            const foundWrestler = await findOneWrestlerByName(name);
+            if (foundWrestler) {
                 return res.status(409).json({
                     message: 'Le catcheur existe déjà'
                 });
+            } else {
+                const newWrestler = await Wrestler.create(req.body);
+                res.json({
+                    id: newWrestler.id,
+                    name: newWrestler.name,
+                    slug: newWrestler.slug
+                });
             }
-            const newWrestler = await Wrestler.create(req.body);
-            res.json({
-                id: newWrestler.id,
-                name: newWrestler.name,
-                slug: newWrestler.slug
-            });
         } catch (error) {
-            console.error(error);
-            Log.error(error.message)
+            // console.error(error);
+            // Log.error(error.message)
             res.status(500).json({
                 message: 'Le serveur a rencontré un problème.',
             })
@@ -91,11 +73,10 @@ const apiController = {
     wrestlerDelete: async function (req, res) {
         try {
             const { slug } = req.params;
-            const foundWrestler = await findOnebySlug(slug);
-            // const foundWrestler = await Wrestler.findOne({ where: {slug: slug}});
+            const foundWrestler = await findOneWrestlerBySlug(slug);
             if (foundWrestler) {
                 foundWrestler.destroy();
-                Log.wrestler('Wrestler supprimé');
+                // Log.wrestler('Wrestler supprimé');
                 res.json({
                     message: 'Le catcheur a été supprimé',
                 });
@@ -106,22 +87,21 @@ const apiController = {
                 })
             }
         } catch (error) {
-            console.error(error);
-            Log.error(error.message)
+            // console.error(error);
+            // Log.error(error.message)
             res.status(500).json({
                 message: 'Le serveur a rencontré un problème',
             })
         }
     },
 
-    wrestlerUpdate: async function(req, res) {
+    wrestlerUpdate: async function (req, res) {
         try {
             const { slug } = req.params;
-            const foundWrestler = await findOnebySlug(slug);
-            // const foundWrestler = await Wrestler.findOne({ where: {slug: slug}});
+            const foundWrestler = await findOneWrestlerBySlug(slug);
             if (foundWrestler) {
                 await foundWrestler.update(req.body);
-                Log.wrestler('Wrestler modifié');
+                // Log.wrestler('Wrestler modifié');
                 res.json({
                     id: foundWrestler.id,
                     name: foundWrestler.name,
@@ -133,12 +113,16 @@ const apiController = {
                 })
             }
         } catch (error) {
-            console.error(error);
-            Log.error(error.message)
+            // console.error(error);
+            // Log.error(error.message)
             res.status(500).json({
-                message : 'Le serveur a rencontré un problème',
+                message: 'Le serveur a rencontré un problème',
             })
         }
+    },
+
+    championships: async function (req, res) {
+        
     }
 
 };
