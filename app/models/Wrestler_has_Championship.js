@@ -1,5 +1,5 @@
 import { DataTypes, Model } from 'sequelize';
-import sequelize from '../databse.js';
+import sequelize from '../database.js';
 
 import Wrestler from './Wrestler.js';
 import Championship from './Championship.js';

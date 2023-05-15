@@ -2,7 +2,7 @@ import express from 'express';
 import * as dotenv from 'dotenv';
 import router from './app/router.js'
 
-import sequelize from './app/databse.js';
+import sequelize from './app/database.js';
 
 
 
@@ -23,7 +23,6 @@ app.use(express.json());
 // Gestion des assets static
 app.use(express.static('./public'));
 
-//TODO Gestion 404
 
 app.use(router);
 

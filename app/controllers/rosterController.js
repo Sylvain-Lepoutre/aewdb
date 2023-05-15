@@ -1,10 +1,9 @@
 import Log from "../function/chalk.js";
 
-import sequelize from '../databse.js';
+import sequelize from '../database.js';
 import Championship from "../models/Championship.js";
 import Wrestler from "../models/Wrestler.js";
 import Wrestler_has_Championship from "../models/Wrestler_has_Championship.js";
-import { findOneWrestlerBySlug } from "../utils/requestWrestlers.js";
 
 
 
@@ -20,14 +19,16 @@ const rosterController = {
                     }
                 }],
             });
-            Log.wrestler('Données OK');
+            // Log.wrestler('Données OK');
             res.render('roster', {
+                headTitle: "Roster",
                 wrestlers: allWrestlers
             });
         } catch (error) {
             console.error(error);
-            Log.error(error.message);
-            res.status(500).json({
+            // Log.error(error.message);
+            res.status(500).render('error',{
+                headTitle: "Error 500",
                 message: 'Le serveur a rencontré un problème'
             });
         }
@@ -46,21 +47,23 @@ const rosterController = {
                 where: { slug: slug }
             });
             if (foundWrestler) {
-                console.log(foundWrestler);
-                Log.wrestler('Wrestler envoyé');
+                // console.log(foundWrestler);
+                // Log.wrestler('Wrestler envoyé');
                 res.render('wrestlerDetails', {
+                    headTitle: foundWrestler.name,
                     wrestler: foundWrestler
                 })
             } else {
-                Log.error(`Wrestler not found`);
+                // Log.error(`Wrestler not found`);
                 res.status(404).render('error', {
                     message: `Le catcheur demandé n'existe pas`
                 })
             }
         } catch (error) {
             console.error(error);
-            Log.error(error.message)
+            // Log.error(error.message)
             res.status(500).render('error', {
+                headTitle: "Error 500",
                 message: 'Le serveur a rencontré un problème'
             })
         }

@@ -15,6 +15,9 @@ router.get('/', mainController.home);
 router.get('/roster', rosterController.list);
 router.get('/roster/:slug', rosterController.details);
 
+
+// Partie Admin
+//TODO mettre en place express-session
 router.get('/admin', adminController.admin);
 router.post('/admin/wrestler/create', adminController.wrestlerCreate);
 router.post('/admin/wrestler/update', adminController.wrestlerUpdate);
@@ -30,7 +33,7 @@ router.delete('/api/roster/:slug', apiController.wrestlerDelete)
 router.patch('/api/roster/:slug', apiController.wrestlerUpdate)
 
 router.get('/api/championships', apiController.championships)
-
+router.get('/api/championships/:slug', apiController.championshipRead)
 
 router.use(mainController.notFound);
 

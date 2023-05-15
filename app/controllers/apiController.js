@@ -1,13 +1,17 @@
 import Log from "../function/chalk.js";
 
-import sequelize from '../databse.js';
+import sequelize from '../database.js';
 import Championship from "../models/Championship.js";
 import Wrestler from "../models/Wrestler.js";
 import Wrestler_has_Championship from "../models/Wrestler_has_Championship.js";
 
 import { findAllWrestlers, findOneWrestlerBySlug, findOneWrestlerByName } from "../utils/requestWrestlers.js";
+import { findAllChampionships, findOneChampionshipBySlug } from "../utils/requestChampionship.js";
 
 const apiController = {
+
+    // Partie consacrée au "wrestlers"
+
     roster: async function (req, res) {
         try {
             const allWrestlers = await findAllWrestlers();
@@ -33,7 +37,7 @@ const apiController = {
             else {
                 // Log.error('Wrestler not found');
                 res.status(404).json({
-                    message: `Le catcheur demandé n'existe pas`
+                    message: `Le catcheur demandé n'existe pas.`
                 })
             }
         } catch (error) {
@@ -51,7 +55,7 @@ const apiController = {
             const foundWrestler = await findOneWrestlerByName(name);
             if (foundWrestler) {
                 return res.status(409).json({
-                    message: 'Le catcheur existe déjà'
+                    message: 'Le catcheur existe déjà.'
                 });
             } else {
                 const newWrestler = await Wrestler.create(req.body);
@@ -78,19 +82,19 @@ const apiController = {
                 foundWrestler.destroy();
                 // Log.wrestler('Wrestler supprimé');
                 res.json({
-                    message: 'Le catcheur a été supprimé',
+                    message: 'Le catcheur a été supprimé.',
                 });
             }
             else {
                 res.status(404).json({
-                    message: `Le catcheur n'existe pas`,
+                    message: `Le catcheur n'existe pas.`
                 })
             }
         } catch (error) {
             // console.error(error);
             // Log.error(error.message)
             res.status(500).json({
-                message: 'Le serveur a rencontré un problème',
+                message: 'Le serveur a rencontré un problème'
             })
         }
     },
@@ -109,22 +113,77 @@ const apiController = {
                 })
             } else {
                 res.status(404).json({
-                    message: `Le catcheur n'existe pas`
+                    message: `Le catcheur n'existe pas.`
                 })
             }
         } catch (error) {
             // console.error(error);
             // Log.error(error.message)
             res.status(500).json({
-                message: 'Le serveur a rencontré un problème',
+                message: 'Le serveur a rencontré un problème'
             })
         }
     },
 
+    // Partie consacrée au "championships"
+
     championships: async function (req, res) {
-        
+        try {
+            const allChampionships = await findAllChampionships();
+            // Log.championship('Championships envoyées');
+            res.json(allChampionships);
+        } catch (error) {
+            // Log.error(error.message);
+            res.status(500).json({
+                message: 'Le serveur a rencontré un problème.'
+            });
+        }
+    },
+
+    championshipRead:  async function (req, res) {
+        try {
+            const { slug } = req.params;
+            const foundChampionship = await findOneChampionshipBySlug(slug);
+            if (foundChampionship) {
+                Log.championship('Championship envoyé')
+                res.json(foundChampionship)
+            } else {
+                Log.error('Championship not found')
+                res.status(404).json({
+                    message: `Le championnat demandé n'existe pas.`
+                })
+            }
+        } catch (error) {
+            console.error(error);
+            Log.error(error.message)
+            res.status(500).json({
+                message: 'Le serveur a rencontré un problème.'
+            })
+        }
     }
 
 };
 
+// wrestlerRead: async function (req, res) {
+//     try {
+//         const { slug } = req.params;
+//         const foundWrestler = await findOneWrestlerBySlug(slug);
+//         if (foundWrestler) {
+//             // Log.wrestler('Wrestler envoyé')
+//             res.json(foundWrestler)
+//         }
+//         else {
+//             // Log.error('Wrestler not found');
+//             res.status(404).json({
+//                 message: `Le catcheur demandé n'existe pas`
+//             })
+//         }
+//     } catch (error) {
+//         // console.error(error);
+//         // Log.error(error.message)
+//         res.status(500).json({
+//             message: 'Le serveur a rencontré un problème.'
+//         })
+//     }
+// },
 export default apiController;

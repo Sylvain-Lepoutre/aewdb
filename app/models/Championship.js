@@ -1,5 +1,5 @@
 import { DataTypes, Model } from 'sequelize';
-import sequelize from '../databse.js';
+import sequelize from '../database.js';
 import slugify from 'slugify';
 
 class Championship extends Model {}
