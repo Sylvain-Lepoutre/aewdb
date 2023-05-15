@@ -1,10 +1,17 @@
-# All Elite Wrestling data
+# All Elite Wrestling database
+
+Ce site me permet de tester et d'apprendre à utiliser l'ORM Sequelize, ainsi que de travailler sur les systemes de base de données.
+
+De plus comme j'ai découvert l'utilisation d'API Rest lors de ma formation, je me concentre surtout la dessus pour tester si le système fonctionne.
+
+Les views, le CSS et tout le front nécessite encore beaucoup de travail, comme je commence a étudier React, je ferais tout ça surement avec, rien n'est décidé encore.
+
+
+
+
 
 ## Conception
-
-### Besoin
-
-#### User Stories
+### User Stories
 
 - En tant qu'utilisateur : 
         -  j'ai besoin de voir qui sont les champions
@@ -18,20 +25,19 @@
         - je veux pouvoir rentrer simplement les infos de chaque show
         - je veux pouvoir automatiser les changements de titres si nécessaire
 
-
-#### Wireframes
+### Wireframes
 
 -page d'accueil avec menu vers le roster, vers la liste des shows, ainsi qu'une liste des champions
 - page roster avec une liste de tout les wrestlers
 - page détail wrestler, avec l'historique des titres, des combats
 - page show avec une liste de tout les shows, avec possibilité de filtre
 
-#### Modèle Conceptuel des Données
+### Modèle Conceptuel des Données
 
 ![mcd](docs/Wrestlers/Wrestlers.png)
 
 
-#### Modèle Logique des Données
+### Modèle Logique des Données
 **championship** (<ins>championship_code</ins>, title, )<br>
 **program** (<ins>program_code</ins>, name)<br>
 **show** (<ins>show_code</ins>, episod, date, _#program_code_)<br>
