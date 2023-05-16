@@ -34,11 +34,13 @@ Les views, le CSS et tout le front nécessite encore beaucoup de travail, comme 
 
 ### Modèle Conceptuel des Données
 
-![mcd](docs/Wrestlers/Wrestlers.png)
+![mcd](mcd.png)
+
+*Ce modèle était le modèle de base, lors de la mise en place, je me rends compte qu'il faut d'autres informations*
 
 
 ### Modèle Logique des Données
-**championship** (<ins>championship_code</ins>, title, )<br>
+**championship** (<ins>championship_code</ins>, title, slug )<br>
 **program** (<ins>program_code</ins>, name)<br>
 **show** (<ins>show_code</ins>, episod, date, _#program_code_)<br>
 **wrestler** (<ins>program_code</ins>, name, slug)<br>
