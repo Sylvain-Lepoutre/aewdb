@@ -17,6 +17,9 @@ const Log = {
     championship: function (message) {
         log(chalk.bold.bgYellowBright(message));
     },
+    wrestler_has_championship: function (message) {
+        log(chalk.bold.bgCyan(message));
+    },
 };
 
 export default Log;

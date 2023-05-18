@@ -35,6 +35,10 @@ router.patch('/api/roster/:slug', apiController.wrestlerUpdate)
 router.get('/api/championships', apiController.championships)
 router.get('/api/championships/:slug', apiController.championshipRead)
 
+router.get('/api/championships-history', apiController.championshipsHistory)
+router.get('/api/championships-history/:slug', apiController.championshipHistoryRead)
+
+
 router.use(mainController.notFound);
 
 

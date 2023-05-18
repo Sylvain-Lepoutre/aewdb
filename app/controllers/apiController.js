@@ -7,6 +7,7 @@ import Wrestler_has_Championship from "../models/Wrestler_has_Championship.js";
 
 import { findAllWrestlers, findOneWrestlerBySlug, findOneWrestlerByName } from "../utils/requestWrestlers.js";
 import { findAllChampionships, findOneChampionshipBySlug } from "../utils/requestChampionship.js";
+import { findAllChampionshipsHistory, findOneChampionshipHistoryBySlug } from "../utils/requestWrestler_has_Championships.js";
 
 const apiController = {
 
@@ -145,45 +146,62 @@ const apiController = {
             const { slug } = req.params;
             const foundChampionship = await findOneChampionshipBySlug(slug);
             if (foundChampionship) {
-                Log.championship('Championship envoyé')
+                // Log.championship('Championship envoyé')
                 res.json(foundChampionship)
             } else {
-                Log.error('Championship not found')
+                // Log.error('Championship not found')
                 res.status(404).json({
                     message: `Le championnat demandé n'existe pas.`
                 })
             }
         } catch (error) {
-            console.error(error);
-            Log.error(error.message)
+            // console.error(error);
+            // Log.error(error.message)
+            res.status(500).json({
+                message: 'Le serveur a rencontré un problème.'
+            })
+        }
+    },
+
+    // Partie consacrée à la table "Wrestler_has_Championship"
+    championshipsHistory: async function (req, res) {
+        try {
+            const allChampionshipsHistory = await findAllChampionshipsHistory();
+            // Log.wrestler_has_championship('Données Ok')
+            res.json(allChampionshipsHistory)
+        } catch (error) {
+            // console.error(error);
+            // Log.error(error.message);
+            res.status(500).json({
+                message: 'Le serveur a rencontré un problème.'
+            })
+        }
+    },
+
+    championshipHistoryRead: async function (req, res) {
+        try {
+            const { slug } = req.params;
+            const foundChampionshipHistory = await findOneChampionshipHistoryBySlug(slug);
+            if (foundChampionshipHistory && foundChampionshipHistory.length > 0) {
+                // Log.wrestler_has_championship('History ok');
+                res.json(foundChampionshipHistory)
+            } else {
+                // Log.error('History not found')
+                res.status(404).json({
+                    message: `L'historique demandé n'existe pas.`
+                })
+            }
+        } catch (error) {
+            // console.error(error);
+            // Log.error(error.message)
             res.status(500).json({
                 message: 'Le serveur a rencontré un problème.'
             })
         }
     }
 
+
 };
 
-// wrestlerRead: async function (req, res) {
-//     try {
-//         const { slug } = req.params;
-//         const foundWrestler = await findOneWrestlerBySlug(slug);
-//         if (foundWrestler) {
-//             // Log.wrestler('Wrestler envoyé')
-//             res.json(foundWrestler)
-//         }
-//         else {
-//             // Log.error('Wrestler not found');
-//             res.status(404).json({
-//                 message: `Le catcheur demandé n'existe pas`
-//             })
-//         }
-//     } catch (error) {
-//         // console.error(error);
-//         // Log.error(error.message)
-//         res.status(500).json({
-//             message: 'Le serveur a rencontré un problème.'
-//         })
-//     }
-// },
+
 export default apiController;
