@@ -16,6 +16,7 @@ Wrestler.init({
         allowNull: false,
         unique: true,
         set(value) {
+            // permet de valider le name et le slug lors d'une update
             this.setDataValue('slug', slugify(value, { lower: true, remove: /['"]/g }))
             this.setDataValue('name', value)
         },

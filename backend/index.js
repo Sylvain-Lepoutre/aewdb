@@ -1,8 +1,9 @@
 import express from 'express';
 import * as dotenv from 'dotenv';
-import router from './app/router.js'
-
+import router from './app/router.js';
+import cors from 'cors';
 import sequelize from './app/database.js';
+
 
 
 
@@ -13,11 +14,18 @@ const port = process.env.PORT || 3000;
 const app = express();
 
 
+
+app.use(cors({
+    origin: 'http://localhost:1234'
+}));
+
+
+
 // Gestion des views
 app.set('view engine', 'ejs');
 app.set('views', './app/views');
 
-app.use(express.urlencoded({ extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Gestion des assets static

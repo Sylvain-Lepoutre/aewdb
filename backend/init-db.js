@@ -1,8 +1,9 @@
-import sequelize from "./app/databse.js";
+import sequelize from "./app/database.js";
 import Wrestler from "./app/models/Wrestler.js";
 import Championship from "./app/models/Championship.js"
 import Log from "./app/function/chalk.js";
 import Wrestler_has_Championship from "./app/models/Wrestler_has_Championship.js";
+import Match from "./app/models/Match.js";
 
 // Création de la table Wrestler
 try {
@@ -84,12 +85,12 @@ try {
     console.log(aewWorldChampion, aewWomensWorldChampion, aewTbsChampion, aewTntChampion, aewInternationalChampion, aewTagTeamChampion1, aewTagTeamChampion2, aewTriosChampion1, aewTriosChampion2, aewTriosChampion3);
     //Je récupere les différents championships
     const aewWorldChampionship = await Championship.findOne({ where: { slug: 'aew-world-championship' } });
-    const aewWomensWorldChampionship = await Championship.findOne({where: {slug: 'aew-womens-world-championship'}});
-    const aewTbsChampionship = await Championship.findOne({where: {slug: 'aew-tbs-championship'}});
-    const aewTntChampionship = await Championship.findOne({where: {slug: 'aew-tnt-championship'}});
-    const aewInternationalChampionship = await Championship.findOne({where: {slug: 'aew-international-championship'}});
-    const aewTagTeamChampionship = await Championship.findOne({where: {slug: 'aew-tag-team-championship'}});
-    const aewTriosChampionship = await Championship.findOne({where: {slug: 'aew-trios-championship'}});
+    const aewWomensWorldChampionship = await Championship.findOne({ where: { slug: 'aew-womens-world-championship' } });
+    const aewTbsChampionship = await Championship.findOne({ where: { slug: 'aew-tbs-championship' } });
+    const aewTntChampionship = await Championship.findOne({ where: { slug: 'aew-tnt-championship' } });
+    const aewInternationalChampionship = await Championship.findOne({ where: { slug: 'aew-international-championship' } });
+    const aewTagTeamChampionship = await Championship.findOne({ where: { slug: 'aew-tag-team-championship' } });
+    const aewTriosChampionship = await Championship.findOne({ where: { slug: 'aew-trios-championship' } });
     console.log(aewWorldChampionship, aewWomensWorldChampionship, aewTbsChampionship, aewTntChampionship, aewInternationalChampionship, aewTagTeamChampionship, aewTriosChampionship);
     //Création des objets Wrestler_has_Championship
     await Wrestler_has_Championship.create({
@@ -157,3 +158,35 @@ try {
     Log.error('erreur dans le seeding Wrestler Has Championship');
 }
 
+const matchData = {
+    type: '3 vs 3',
+    stipulation: 'Tag Team Match',
+    duration: '20 minutes',
+    winner: 'Team A',
+    participants: [
+        {
+            teamName: 'Team A',
+            wrestlers: [
+                { wrestlerName: 'John Cena' },
+                { wrestlerName: 'The Rock' },
+                { wrestlerName: 'Stone Cold Steve Austin' },
+            ],
+        },
+        {
+            teamName: 'Team B',
+            wrestlers: [
+                { wrestlerName: 'Hulk Hogan' },
+                { wrestlerName: 'Bret Hart' },
+                { wrestlerName: 'Shawn Michaels' },
+            ],
+        },
+    ],
+};
+
+Match.create(matchData)
+    .then((match) => {
+        console.log('Match créé avec succès:', match);
+    })
+    .catch((error) => {
+        console.error('Erreur lors de la création du match:', error);
+    });
