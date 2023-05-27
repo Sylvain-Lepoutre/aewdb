@@ -1,0 +1,7 @@
+@use 'reset-css';
+
+@use './var';
+
+body {
+    background-color: var.$mainbackground;
+}

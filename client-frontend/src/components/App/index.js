@@ -1,34 +1,28 @@
 import { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+
+import './style.scss'
+
+import Layout from '../../pages/Layout';
+import Home from '../../pages/Home'
+import Roster from '../../pages/Roster'
+
 
 
 function App() {
 
-    const [champions, setChampions] = useState([])
-
-    async function getChampions() {
-        try {
-            const response = await fetch('http://localhost:3000/api/championships');
-            const data = await response.json();
-            setChampions(data);
-        } catch (error) {
-            console.error(error.message);
-        }
-    }
-
-    useEffect(() => {
-        getChampions();
-    }, []);
-
     return (
-        <div>
-            <h2>AEW Champions</h2>
-            <ul>
-                {champions.map(item => (
-                    <li key={item.id}>{item.title}</li>
-                ))}
-            </ul>
-        </div>
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Layout />}>
+                    <Route index element={<Home />} />
+                    <Route path="roster" element={<Roster />} />
+                </Route>
+            </Routes>
+        </BrowserRouter>
     )
+
+
 };
 
 export default App;
