@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 
+import Panel from "../components/Panel";
+
 function Home() {
     const [champions, setChampions] = useState([])
 
@@ -19,8 +21,8 @@ function Home() {
 
 
     return (
-        <>
-            <h1>Home</h1>
+        <Panel as="main">
+            <h1>Champions</h1>
             <div>
                 <ul>
                     {champions.map(item => (
@@ -28,7 +30,7 @@ function Home() {
                     ))}
                 </ul>
             </div>
-        </>
+        </Panel>
     )
 };
 

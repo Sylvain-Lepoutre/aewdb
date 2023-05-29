@@ -1,17 +1,14 @@
-import { Outlet, Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import Header from "../components/Header";
+import Nav from '../components/Nav'
 
-function Layout(){
+
+function Layout() {
     return (
         <>
-            <nav>
-                <li>
-                    <Link to={"/"}>Home</Link>
-                </li>
-                <li>
-                    <Link to={"/roster"}>Roster</Link>
-                </li>
-            </nav>
-
+            <Header>
+                <Nav />
+            </Header>
             <Outlet />
         </>
     )
