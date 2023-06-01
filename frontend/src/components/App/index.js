@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import './style.scss'
 
 import Layout from '../../pages/Layout';
-import Home from '../../pages/Home'
+import Home from "../../pages/Home/Home";
 import Roster from '../../pages/Roster'
 
 

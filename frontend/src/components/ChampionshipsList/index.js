@@ -21,13 +21,13 @@ function ChampionshipsList({ championships }) {
             </div>
             <div className="championshipsList__row">
                 {championships.filter(championship => championship.slug === "aew-tag-team-championship").map(championship => (
-                    <article className="championshipCard" key={championship.id}>
+                    <article className="championshipCard championshipCard--tag" key={championship.id}>
                         <h3 className="championshipCard__title" >{championship.title}</h3>
                         <ChampionsList championship={championship} />
                     </article>
                 ))}
                 {championships.filter(championship => championship.slug === "aew-trios-championship").map(championship => (
-                    <article className="championshipCard" key={championship.id}>
+                    <article className="championshipCard championshipCard--trio" key={championship.id}>
                         <h3 className="championshipCard__title" >{championship.title}</h3>
                         <ChampionsList championship={championship} />
                     </article>

@@ -32,6 +32,14 @@
         transform: translate3d(0px, 0px, -250px);
     }
 
+    &--tag {
+        width: 40%;
+    }
+
+    &--trio {
+        width:  60%;
+    }
+
     &__title {
         font-size: 1.5rem;
         text-align: center;

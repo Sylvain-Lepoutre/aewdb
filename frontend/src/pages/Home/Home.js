@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 
-import Panel from "../components/Panel";
-import ChampionsList from "../components/ChampionsList";
+import Panel from "../../components/Panel";
+import ChampionsList from "../../components/ChampionsList";
 
-import '../components/Content/style.scss';
-import ChampionshipsList from "../components/ChampionshipsList";
+import './style.scss';
+import ChampionshipsList from "../../components/ChampionshipsList";
 
 
 function Home() {
@@ -27,8 +27,8 @@ function Home() {
 
 
     return (
-        <Panel as="main" role="main" className="content">
-            <h2 className="content__title">Champions actuels</h2>
+        <Panel as="main" role="main" className="home">
+            <h2 className="home__title">Champions actuels</h2>
             <ChampionshipsList championships={championships} />
         </Panel>
     )
