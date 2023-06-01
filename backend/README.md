@@ -1,54 +1,62 @@
 # All Elite Wrestling database
+## Backend
 
-Ce site me permet de tester et d'apprendre à utiliser l'ORM Sequelize, ainsi que de travailler sur les systemes de base de données.
+Ce dossier sera consacré à toute la partie backend, gestion de base de données, créations des endpoints de l'API rest, il y a une architecture en MVC (Models, Views, Controllers), même si pour l'affichage il faudra surtout passer par le dossier frontend.
 
-De plus comme j'ai découvert l'utilisation d'API Rest lors de ma formation, je me concentre surtout la dessus pour tester si le système fonctionne.
+J’utilise l'environnement d'exécution Node.js.
 
-Les views, le CSS et tout le front nécessite encore beaucoup de travail, comme je commence a étudier React, je ferais tout ça surement avec, rien n'est décidé encore.
+### Packages et modules utilisés
+- node-dev : Outil de développement qui redemarre automatiquement le serveur de de développement lors de la modification d'un fichier.
 
+*Pour lancer le serveur de développement : `npm run dev`*
 
+- express : Framework pour créer un serveur http, avec de nombreuses méthode permettant de gérer les requètes, les assets statiques, le format json...
 
+- Dotenv : Module pour la gestion des variables d'environnement.
 
+- ejs : Moteur de template pour générer les vues
 
-## Conception
-### User Stories
+- sequelize (avec pg et pg-hstore comme la base de données est en PostgreSQL) : ORM (Object Relationnal Mapping) qui permet de faire le lien entre la base de données, et les objets utilisable dans l'application.
 
-- En tant qu'utilisateur : 
-        -  j'ai besoin de voir qui sont les champions
-        -  j'ai besoin de pouvoir voir la liste de tout les catcheurs
-        -  je veux avoir le détails d'un catcheur avec sa liste de titres et de combats
-        -  je veux voir la liste des shows, et pouvoir trier et filtrer par date, par show
-        -  je veux voir pour chaque titre son historique
-        -  je veux pour chaque show avoir les détails, de date, de numéro d'épisode, et les combats y ayant eu lieu
+- cors : Package qui permet d'établir la politique de CORS (Cross-Origin Resource Sharing) afin d'autoriser les accès à l'API.
 
-- En tant qu'admin, 
-        - je veux pouvoir rentrer simplement les infos de chaque show
-        - je veux pouvoir automatiser les changements de titres si nécessaire
-
-### Wireframes
-
--page d'accueil avec menu vers le roster, vers la liste des shows, ainsi qu'une liste des champions
-- page roster avec une liste de tout les wrestlers
-- page détail wrestler, avec l'historique des titres, des combats
-- page show avec une liste de tout les shows, avec possibilité de filtre
-
-### Modèle Conceptuel des Données
-
-![mcd](mcd.png)
-
-*Ce modèle était le modèle de base, lors de la mise en place, je me rends compte qu'il faut d'autres informations*
+- slugify : Utilitaire qui permet de modifier une chaine de caractères en un "slug" plus pratique pour les url notamment.
 
 
-### Modèle Logique des Données
-**championship** (<ins>championship_code</ins>, title, slug )<br>
-**program** (<ins>program_code</ins>, name)<br>
-**show** (<ins>show_code</ins>, episod, date, _#program_code_)<br>
-**wrestler** (<ins>program_code</ins>, name, slug)<br>
-**wrestler_has_championship** (<ins>_#program_code_</ins>, <ins>_#championship_code_</ins>, start date, end date)<br>
-**wrestler_has_show** (<ins>_#program_code_</ins>, <ins>_#show_code_</ins>)
+### Conception (évolue au fil du développement)
+#### User Stories
 
+- En tant qu'utilsateur : 
+  - Je dois pouvoir accéder au roster de la compagnie.
+  - Je dois pouvoir accéder aux page individuelles de chaque catcheurs.
+  - Je dois pouvoir voir la liste des shows.
+  - Je dois pouvoir voir la liste des combats
+  - Je dois pouvoir voir l'historique de chaque championnat.
 
+- En tant qu'admin :
+  - Je dois avoir accès à une interface pour créer les shows, et automatiquement mettre à jour les statistiques.
 
+#### Wireframes
 
+- Page d'accueil avec un menu vers le roster des combattants, la liste des shows...
+- Page "Roster" avec la liste des catcheurs.
+- Page "Catcheur" pour avoir plus de détail.
+- Page "List de Shows" avec la liste des shows.
+- Page "Show" avec tout les combats de ce show en particulier.
 
+#### MLD
+
+**wrestler** (<ins>wrestler_code</ins>, name, slug)<br>
+
+**championship** (<ins>championship_code</ins>, title, slug, maxHolder)<br>
+
+**wrestler_has_championship** (<ins>_#wrestler_code_</ins>, <ins>_#championship_code_</ins>, start date, end date)<br>
+
+**match** (<ins>match_code</ins>, type, stipulation, duration, winner, <ins>_#show_code_</ins>)
+
+**wrestler_has_match** (<ins>_#wrestler_code_</ins>, <ins>_#match_code_</ins>)
+
+**show** (<ins>show_code</ins>, number, date, <ins>_#program_code_</ins>)
+
+**program** (<ins>program_code</ins>, name, type, slug)
 
